@@ -38,6 +38,7 @@ export default function Filter() {
           </div>
           <Section>
             <h3> Building</h3>
+            <>
             {buildings.map((b, i) => (
               <div key={i} className="flex space-x-2">
                 <input
@@ -50,9 +51,11 @@ export default function Filter() {
                 </label>
               </div>
             ))}
+            </>
           </Section>
           <Section>
             <h3> Type</h3>
+            <>
             {roomTypes.map((r, i) => (
               <div key={i} className="flex space-x-2">
                 <input
@@ -64,6 +67,7 @@ export default function Filter() {
                 <label className="text-sm"> {r.name}</label>
               </div>
             ))}
+            </>
           </Section>
           <Section>
             <h3> Minimum Capacity</h3>
