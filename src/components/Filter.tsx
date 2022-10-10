@@ -1,7 +1,7 @@
 import Slider from "rc-slider";
-import { useState } from "react";
-import { buildings, roomTypes } from "../mocks/data";
-const Section = ({ children }) => (
+import {buildings, roomTypes} from "../mocks/data";
+
+const Section = ({children}) => (
   <div className="pt-3">
     <div className="border-b-3 pr-1 pl-1 pb-3 border-b-2 border-light-gray">
       {children}
@@ -9,12 +9,18 @@ const Section = ({ children }) => (
   </div>
 );
 
-export default function Filter() {
-  const [capacity, setCapacity] = useState(1);
+type FilterProp = {
+  capacity: number;
+  onSlide: (n: number | number[]) => unknown;
+  onReset: () => unknown;
+};
+
+export default function Filter(props: FilterProp) {
+  const {capacity, onSlide, onReset} = props;
 
   const handleReset = () => {
-    document.getElementById("form").reset();
-    setCapacity(1);
+    (document.getElementById("form") as HTMLFormElement).reset();
+    onReset();
   };
 
   return (
@@ -39,34 +45,25 @@ export default function Filter() {
           <Section>
             <h3> Building</h3>
             <>
-            {buildings.map((b, i) => (
-              <div key={i} className="flex space-x-2">
-                <input
-                  type="checkbox"
-                  value={b.code}
-                  name="building"
-                ></input>
-                <label className="text-sm">
-                  {b.name} ({b.code})
-                </label>
-              </div>
-            ))}
+              {buildings.map((b, i) => (
+                <div key={i} className="flex space-x-2">
+                  <input type="checkbox" value={b.code} name="building"></input>
+                  <label className="text-sm">
+                    {b.name} ({b.code})
+                  </label>
+                </div>
+              ))}
             </>
           </Section>
           <Section>
             <h3> Type</h3>
             <>
-            {roomTypes.map((r, i) => (
-              <div key={i} className="flex space-x-2">
-                <input
-                  onChange={e => console.log(e.target.value)}
-                  type="checkbox"
-                  value={r.code}
-                  name="type"
-                ></input>
-                <label className="text-sm"> {r.name}</label>
-              </div>
-            ))}
+              {roomTypes.map((r, i) => (
+                <div key={i} className="flex space-x-2">
+                  <input type="checkbox" value={r.code} name="type"></input>
+                  <label className="text-sm"> {r.name}</label>
+                </div>
+              ))}
             </>
           </Section>
           <Section>
@@ -74,7 +71,7 @@ export default function Filter() {
             <div className="flex p-3 space-x-1">
               <div className="min-w-[95%] pt-2">
                 <Slider
-                  onChange={(n) => setCapacity(n)}
+                  onChange={(n) => onSlide(n)}
                   value={capacity}
                   min={1}
                   max={30}
