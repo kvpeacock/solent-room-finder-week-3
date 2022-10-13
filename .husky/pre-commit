@@ -5,6 +5,6 @@ echo "running pre-commit checks"
 
 ## prettier
 
-npm run  prettier
+npm run prettier
 npm run types
 npm run lint
