@@ -5,7 +5,7 @@ on:
     branches-ignore:
       - main
   pull_request:
-    # The branches below must be a subset of the branches  e
+    # The branches below must be a subset of the branches
     branches: [main]
 jobs:
   eslint:
@@ -23,3 +23,7 @@ jobs:
       - name: Run ESLint
         run: npm run lint
         continue-on-error: true
+      - name: Run Prettier
+        run: npm run prettier
+      - name: Check Types
+        run: npm run types

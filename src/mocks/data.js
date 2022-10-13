@@ -12,7 +12,7 @@ export const buildings = [
     code: "RM",
   },
   {
-    name: "Sir Christopher Cockerell",
+    name: "Sir Christopher Cockerell TEST",
     code: "CC",
   },
 ];
