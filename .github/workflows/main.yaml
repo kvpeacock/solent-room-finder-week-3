@@ -3,7 +3,7 @@ name: Checking Code Quality
 on:
   push:
     branches-ignore:
-      - main
+      - dev
   pull_request:
     # The branches below must be a subset of the branches
     branches: [main]
